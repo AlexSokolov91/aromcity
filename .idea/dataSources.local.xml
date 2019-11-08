@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="dataSourceStorageLocal">
+    <data-source name="aromcity@localhost" uuid="03a9723e-a89b-4e2a-a381-d9fedaa93122">
+      <database-info product="MySQL" version="5.7.25-0ubuntu0.18.04.2" jdbc-version="4.0" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-5.1.47 ( Revision: fe1903b1ecb4a96a917f7ed3190d80c049b1de29 )" dbms="MYSQL" exact-version="5.7.25" exact-driver-version="5.1">
+        <extra-name-characters>#@</extra-name-characters>
+        <identifier-quote-string>`</identifier-quote-string>
+      </database-info>
+      <case-sensitivity plain-identifiers="exact" quoted-identifiers="exact" />
+      <secret-storage>master_key</secret-storage>
+      <user-name>homestead</user-name>
+      <introspection-schemas>*:@</introspection-schemas>
+      <ssh-properties>
+        <enabled>true</enabled>
+        <proxy-host>192.168.10.10</proxy-host>
+        <user>vagrant</user>
+        <use-password>false</use-password>
+        <auth-type>KEY_PAIR</auth-type>
+        <private-key-path>C:\Users\1\Desktop\homestead-8.0.2\.vagrant\machines\homestead-7\virtualbox\private_key</private-key-path>
+      </ssh-properties>
+    </data-source>
+  </component>
+</project>
