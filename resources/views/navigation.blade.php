@@ -29,7 +29,7 @@
                    <ul class="sub-nav">
                        @foreach($brands as $brand)
                         <span class="space-filler"></span>
-                        <li><a href="{{route('brand.show' ,[app()->getLocale(), $brand->id])}}">{{$brand->brand_name}}</a></li>
+                        <li><a href="{{route('brand.show' , $brand->id)}}">{{$brand->brand_name}}</a></li>
 
                         @endforeach
                     </ul>

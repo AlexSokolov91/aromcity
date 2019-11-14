@@ -32,8 +32,10 @@
                             <span class="product__discount-text">-50%</span>
                         </div>
                         <div class="product__img">
-                            <a href="{{route('products.show' , $product->id)}}">
+                            <a href="{{route('product.show' , $product->id)}}">
+                              @if(!empty($product->images->path))
                                 <img src="{{$product->images->path}}" alt="" class="img-fluid">
+                           @endif
                             </a>
                         </div>
                         <div class="product__title">{{$product->name}}</div>

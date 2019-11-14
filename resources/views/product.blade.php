@@ -1,17 +1,14 @@
 
     @foreach($filter as $product)
-{{--@dd($filter)--}}
         <div class="product">
-
-
             <div class="product__sale">
                 <span class="product__sale-text">sale</span>
-            </div>
+                </div>
             <div class="product__discount discount-75">
                 <span class="product__discount-text">-50%</span>
-            </div>
+                 </div>
             <div class="product__img">
-                <a href="{{ route('products.show' , [app()->getLocale(), $product->id])}}">
+                <a href="{{ route('products.show' , $product->id)}}">
                     <img src="{{$product->images->path}}" alt="" class="img-fluid">
                 </a>
             </div>
@@ -28,9 +25,7 @@
                 <span class="new-price">{{$product->price}}грн</span>
             </div>
             <a href="{{route('add_cart' , $product->id)}}" class="g-btn g-btn--product add-to-cart"><i class="product-cart-icon"></i>Купить со скидкой</a>
-
         </div>
-
-    @endforeach
+        @endforeach
 
 

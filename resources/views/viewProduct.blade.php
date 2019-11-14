@@ -57,6 +57,7 @@
                     </a>
                 </div>
             </div>
+
             @include('viewProductBanner')
             <div class="container">
                 <div class="stock-line">
@@ -118,8 +119,8 @@
                                     <a href="#cart-popup" class="g-btn g-btn--product add-to-cart"><i class="product-cart-icon"></i>Купить со скидкой</a>
                                 </div>
                             </div>
-                    </div>
                         @endforeach
+                        </div>
                     </div>
                 <div class="container">
                         <h2 class="section-title comments-title"><span class="section-title-fixed">Отзывы наших клиентов</span></h2>

@@ -1,5 +1,5 @@
 
-<section class="features">
+</sectio class="features">
     <div class="container">
 
         <h2 class="section-title features-title"><span class="section-title-fixed">ХИТЫ ПРОДАЖ</span></h2>
@@ -39,5 +39,6 @@
     @endforeach
         </div>
     </div>
+
 </section>
 

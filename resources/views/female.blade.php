@@ -15,9 +15,7 @@
             <span class="section-title-fixed">Женские духи</span>
         </h2>
         <div class="product-list-3">
-
             @foreach($allFemaleProduct as $product)
-
                 <div class="product" >
                     <div class="product__sale">
                         <span class="product__sale-text">sale</span>
@@ -26,8 +24,10 @@
                         <span class="product__discount-text">-50%</span>
                     </div>
                     <div class="product__img">
-                        <a href="{{route('products.show' , $product->id)}}">
+                        @if(!empty($product->images->path))
+                        <a href="{{route('product.show' , $product->id)}}">
                             <img src="{{$product->images->path}}" alt="" class="img-fluid">
+                       @endif
                         </a>
                     </div>
                     <div class="product__title">{{$product->name}}</div>
@@ -45,7 +45,7 @@
                     <a href="#cart-popup" data-href="{{route ('add_cart', $product->id)}}" class="g-btn g-btn--product add-to-cart"><i class="product-cart-icon"></i>Купить со скидкой</a>
                 </div>
                     @endforeach
-                    @include('product')
+                    {{--@include('product')--}}
 
         </div>
     </div>
@@ -54,7 +54,7 @@
 
     <!-- pagination-begins -->
 {{--@dd($pages)--}}
-    <ul class="pagination">
+    {{--<ul class="pagination">--}}
 
             {{--<li class="previous"><a href=""><span class="fa fa-angle-left"></span></a></li>--}}
 
@@ -74,7 +74,7 @@
         {{--<li><a href="#">26</a></li>--}}
         {{--<li class="next"><a href="#"><span class="fa fa-angle-right"></span></a></li>--}}
 
-    </ul>
+    {{--</ul>--}}
 
     <!-- pagination-ended -->
 

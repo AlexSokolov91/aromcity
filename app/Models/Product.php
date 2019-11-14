@@ -10,16 +10,22 @@ use Illuminate\Database\Eloquent\Model;
 class Product extends Model
 {
     protected $fillable = [
-        'total_price' ,
-        'client_name',
-        'client_phone',
-        'order_status',
-        'quantity',
-        'one_unit_price',
-        'total_price',
-        'comments',
-        'city',
-        'warehouse'
+        'name' ,
+        'brand_id',
+        'volume',
+        'category_id',
+        'country',
+        'type',
+        'family',
+        'volume',
+        'gender',
+        'article',
+        'price',
+        'old_price',
+        'discount',
+        'characteristics',
+        'characteristics__description',
+        'popular'
 
     ];
 

@@ -36,7 +36,7 @@ Route::get('/' , function (){
 //    Route::post('/filter/show_brands' , 'CategoryController@female')->name('filter.showBrand');
         Route::post('/show/products', 'FilterController@productsFilter')->name('filter.products');
 //    Route::post('/show/products1' , 'FilterController@productsMale')->name('filter.productsMale');
-        Route::get('/products/{product}', 'ProductController@show')->name('products.show');
+        Route::get('/products/{product}', 'ProductController@show')->name('product.show');
 
         Route::post('/comments/store/', 'CommentController@store')->name('comment-store');
         Route::get('/cart/add/{id}', 'CartController@add')->name('add_cart');
@@ -44,7 +44,7 @@ Route::get('/' , function (){
         Route::get('/cart/remove/{id}', 'CartController@remove')->name('cart.remove');
         Route::get('/view_cart', 'CartController@viewCart')->name('cart.view');
         Route::post('/store', 'OrderController@store')->name('new_order');
-        Route::get('/brands/{brand}', 'BrandController@show')->name('brand.show');
+        Route::get('/brands/{brand}', 'ProductController@showProduct')->name('brand.show');
         Route::get('/stocks' , 'IndexController@stocks')->name('stocks');
         Route::get('/delivery' , 'IndexController@delivery')->name('delivery');
         Route::get('/contacts', 'IndexController@contacts')->name('contact');
@@ -55,8 +55,10 @@ Route::get('/' , function (){
                     Auth::routes();
                     Route::get('admin/home', 'Admin\HomeController@index')->name('home');
                     Route::resource('admin/brands' , 'Admin\BrandController');
-
-                });
+                    Route::resource('admin/products', 'Admin\ProductController');
+                    Route::post('admin/products/{id}/photo/upload' , 'Admin\ProductImageController@upload')->name('addNewPhoto');
+            Route::delete('admin/productsImage/destroy/{id}' , 'Admin\ProductImageController@destroy')->name('deletePhoto');
+        });
 
 
 

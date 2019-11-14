@@ -32,7 +32,7 @@
 
             <nav class="nav nav-pills flex-column flex-sm-row">
                 <a class="flex-sm-fill text-sm-center nav-link " href="{{route('brands.index')}}">Бренды</a>
-                {{--<a class="flex-sm-fill text-sm-center nav-link" href="{{route('admin.category')}}">Категории</a>--}}
+                <a class="flex-sm-fill text-sm-center nav-link" href="{{route('products.index')}}">Товар</a>
                 {{--<a class="flex-sm-fill text-sm-center nav-link" href="{{route('admin.comment')}}">Отзывы</a>--}}
                 {{--<a class="flex-sm-fill text-sm-center nav-link" href="{{route('admin.navigate')}}">Навигация</a>--}}
                 <ul class="nav nav-pills">
@@ -88,19 +88,7 @@
     </div>
     <main class="py-4">
         @yield('content')
-        {{--@yield('content')--}}
-        {{--@yield('admin-products')--}}
-        {{--@yield('admin.editProduct')--}}
-        {{--@yield('admin.createProduct')--}}
-        {{--@yield('admin-category')--}}
-        {{--@yield('admin-comment')--}}
-        {{--@yield('script')--}}
-        {{--@yield('navigation')--}}
-        {{--@yield('admin-banner')--}}
-        {{--@yield('edit-banner')--}}
-        {{--@yield('admin-edit-banners')--}}
-        {{--@yield('admin.orders')--}}
-        {{--@yield('admin-editOrder')--}}
+
     </main>
 </div>
 </body>
