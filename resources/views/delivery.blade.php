@@ -1,9 +1,7 @@
 @extends('.layouts.app')
 
 @section('product-content')
-    @include('header')
     @include('breadcrums')
-
     <div class="delivery-payment">
         <div class="container flex-container">
 
@@ -123,5 +121,4 @@
             </div>
         </div>
     </div>
-    @include('footer')
 @endsection

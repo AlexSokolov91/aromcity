@@ -1,5 +1,5 @@
-<footer>
 
+<footer>
     <div class="banner-line__wrapper">
         <div class="container banner-line-container">
 

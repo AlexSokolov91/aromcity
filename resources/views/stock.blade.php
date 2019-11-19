@@ -1,7 +1,6 @@
 @extends('.layouts.app')
 
 @section('product-content')
-    @include('.header')
 @include('.breadcrums')
     <div class="promotions">
         <div class="container flex-container">
@@ -97,11 +96,7 @@
                     <div class="promotion__asterisk1">*В отзыве указывайте фамилию и имя</div>
                     <div class="promotion__asterisk2">**В подарок Вы можете выбрать пробник парфюмерии или косметика. Точный список подарков Вам назовет менеджер. При следующем заказе обязательно назовите менеджеру пароль: "Подарок за отзыв"</div>
                 </div>
-
             </div>
-
         </div>
     </div>
-
-    @include('footer')
     @endsection

@@ -1,7 +1,6 @@
 @extends('.layouts.app')
 
 @section('product-content')
-    @include('header')
     @include('.breadcrums')
     <div class="categories">
         <div class="container flex-container">
@@ -13,7 +12,6 @@
         </h2>
         <div class="product-list-3">
             @foreach($allBrandProducts as $product)
-
                 <div class="product" >
                     <div class="product__sale">
                         <span class="product__sale-text">sale</span>
@@ -22,8 +20,10 @@
                         <span class="product__discount-text">-50%</span>
                     </div>
                     <div class="product__img">
-                        <a href="{{route('products.show' , $product->id)}}">
-                            <img src="{{$product->images->path}}" alt="" class="img-fluid">
+                        <a href="{{route('product.show' , $product->id)}}">
+                          @if($product->images->path)
+                            <img src="{{\Illuminate\Support\Facades\Storage::url($product->images->path)}}" alt="" class="img-fluid">
+                       @endif
                         </a>
                     </div>
                     <div class="product__title">{{$product->name}}</div>
@@ -55,8 +55,8 @@
             </div>
           </div>
         </div>
-        @include('footer')
+
         @section('scripts')
             <script src="{{asset('js/addToCart.js')}}"></script>
-@endsection
-    @endsection
+        @endsection
+         @endsection

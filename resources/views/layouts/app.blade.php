@@ -29,33 +29,18 @@
 <header>
     @include('.navigation')
 </header>
+@include('header')
+@yield('product-content')
+
+{{--@yield('female')--}}
+
+
+@include('.footer')
 <script src="{{asset('js/jquery.min.js')}}"></script>
 <script src="{{asset('js/scripts.js')}}"></script>
 <script src="{{asset('js/libs.min.js')}}"></script>
-@yield('product-content')
-{{--@yield('indexPage')--}}
-{{--@yield('female')--}}
-
 @yield('cart')
-{{--<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>--}}
-
-{{--<script src="{{asset('js/countPrice.js')}}"></script>--}}
 @yield('scripts')
 @yield('viewCart')
-
-{{--@yield('home')--}}
-{{--@yield('cart')--}}
-{{--<script>--}}
-    {{--jQuery('document').ready(function () {--}}
-        {{--jQuery('.event').on('click', function (e) {--}}
-            {{--jQuery.get(e.target.getAttribute("href"), function (data) {--}}
-                {{--jQuery('.cart-total').html(data.count);--}}
-            {{--});--}}
-            {{--e.preventDefault();--}}
-        {{--});--}}
-    {{--});--}}
-
-{{--</script>--}}
-
 </body>
 </html>

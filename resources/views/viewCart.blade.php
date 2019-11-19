@@ -1,7 +1,6 @@
 @extends('.layouts.app')
 
 @section('product-content')
-    @include('.header')
 
     <div class="checkout">
         <div class="container flex-container">
@@ -18,7 +17,7 @@
                             </div>
                                 <div class="product__img">
                                 <a href="product.html">
-                                    <img src="{{$populars->images['path'], $populars->id}}" alt="" class="img-fluid">
+                                    <img src="{{\Illuminate\Support\Facades\Storage::url($populars->images['path']), $populars->id}}" alt="" class="img-fluid">
                                 </a>
                                     </div>
                     <div class="product__title">{{$populars->name}}</div>
@@ -37,12 +36,9 @@
                {{--@endforeach--}}
                     </div>
                 </div>
-
-    <div class="main-container">
-
-    <h2 class="section-title checkout-title"><span class="section-title-fixed">Оформление заказа</span></h2>
-
-    <div class="cart">
+            <div class="main-container">
+        <h2 class="section-title checkout-title"><span class="section-title-fixed">Оформление заказа</span></h2>
+        <div class="cart">
     <div class="cart__banner">Купите любые ДВА товара и мы Вам подарим ДУХИ 110мл ! Купите ТРИ и мы подарим Вам ТРИ флакона духов по 110 мл или косметику, на Ваш выбор! Подробнее: Акция 1 + 1 =</div>
         <form action="{{route('new_order')}}" class="form__checkout" id="form__checkout" method="post">
         <ul class="cart__product-list">
@@ -59,8 +55,7 @@
     <a href="javascript:void(0);">{{$product->name, $product->id}}</a>
     </div>
     </div>
-
-    <div class="cart__product-price">{{$product->price, $product->id}} грн</div>
+            <div class="cart__product-price">{{$product->price, $product->id}} грн</div>
             <div class="responsive-devider"></div>
     <select  data-price="{{$product->price}}" name='quantity[]' class="cart__product-amount" id="cart__product-amount">
         @for($i =1; $i <= 9; $i++)
@@ -72,15 +67,11 @@
     <div class="cart__product-total"> грн</div>
     <div class="cart__product-remove"></div>
     </li>
-
-    </ul>
+        </ul>
         @endforeach
     <div class="cart__bottom">
-
-
-    <div class="cart__bottom-form-wrapper">
-
-    <div class="form-group">
+        <div class="cart__bottom-form-wrapper">
+        <div class="form-group">
     <label for="name" >Имя</label>
     <input id="name" name="client_name" type="text" class="g-input" placeholder="Введите Имя">
     </div>
@@ -90,14 +81,11 @@
     </div>
     <div class="cart__total">{{$total}} грн</div>
         <button type="submit" class="g-btn g-btn--checkout" value="Заказать"> </button>
-
     </div>
-
-    {{--</div>--}}
+        {{--</div>--}}
     </div>
         </form>
         <div class="checkout__info">
-
             <div class="checkout__info-title">Доставка Новой почтой!</div>
             <div class="checkout__info-title-descr checkout-highlight">При заказе от 2-х единиц любого товара доставка совершенно БЕСПЛАТНАЯ.</div>
             <div class="checkout__info-content">
@@ -112,17 +100,13 @@
                     <p>Оплата заказа производится в отделении Новой почты послеполучения и осмотра парфюма. Никаких предоплат и переводов.</p>
                     <p>Срок доставки 1-3 дня.</p>
                     <p>Внимание! Каждый флакон проверяется перед отправкой. Тем самым мы гарантируем качество полученной Вами парфюмерии.</p>
+                    </div>
                 </div>
             </div>
-
         </div>
-
+      </div>
+     </div>
     </div>
-
-    </div>
-    </div>
-    </div>
-    @include('footer')
 
         {{--@section('scripts')--}}
             {{--<script src="{{asset('js/jquery.min.js')}}"></script>--}}

@@ -1,9 +1,4 @@
 
-{{--@push('scripts')--}}
-    {{--<script src="{{asset('js/jquery.min.js')}}"></script>--}}
-    {{--<script src="{{asset('js/scripts.js')}}"></script>--}}
-    {{--<script src="{{asset('js/addTocart.js')}}"></script>--}}
-{{--@endpush--}}
 <div class="container">
     <div class="top-line">
         <div class="opening-hours">
@@ -94,12 +89,6 @@
             </div>
         @endforeach
         </div>
-
-        {{--<script src="{{asset('js/jquery.min.js')}}"></script>--}}
-        {{--<script src="{{asset('js/scripts.js')}}"></script>--}}
-        {{--<script src="{{asset('js/libs.min.js')}}"></script>--}}
-        {{--<script src="{{asset('js/addTocart.js')}}"></script>--}}
-
     </div>
 </div>
 

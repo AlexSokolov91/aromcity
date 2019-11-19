@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\Brand;
-use Gate;
+use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class BrandController extends Controller
+class CategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,8 +15,8 @@ class BrandController extends Controller
      */
     public function index()
     {
-        $brands = Brand::all();
-        return view('Admin/brands' , compact('brands'));
+        $categories = Category::all();
+        return view('admin/category' , compact('categories'));
     }
 
     /**
@@ -38,19 +37,8 @@ class BrandController extends Controller
      */
     public function store(Request $request)
     {
-
-//        $request->validate([
-//            'brand_name' => 'required|unique'
-//
-//
-//        ]);
-//        if(Gate::denies('add-brands')){
-//            return redirect()->back()->with(['message' => 'У Вас нет прав']);
-//        }
-
-        $createBrand = Brand::create($request->except('token'));
+        $createCategory = Category::create($request->except('token'));
         return redirect()->back();
-
     }
 
     /**
@@ -61,7 +49,8 @@ class BrandController extends Controller
      */
     public function show($id)
     {
-
+        $category = Category::find($id);
+        return view('admin/category-show', compact('category'));
     }
 
     /**
@@ -72,8 +61,7 @@ class BrandController extends Controller
      */
     public function edit($id)
     {
-        $brandEdit = Brand::find($id);
-        return view('Admin/brands', compact('brandEdit'));
+        //
     }
 
     /**
@@ -85,13 +73,10 @@ class BrandController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $brandEdit = Brand::find($id);
-        $data = $request->except('_token');
-        $brands = Brand::find($data['id']);
-//        if(Gate::allows('update-brands' , $brands))
-        $brandEdit->fill($request->except('_token'));
-        $brandEdit->save();
-//        dd($brandEdit);
+        $categoryEdit = Category::find($id);
+        $categoryEdit->fill($request->except('_method','_token'));
+        $categoryEdit->save();
+
         return redirect()->back();
     }
 
@@ -103,13 +88,7 @@ class BrandController extends Controller
      */
     public function destroy($id)
     {
-        $deleteBrand = Brand::find($id);
-        $deleteBrand->delete();
+        $categoryDelete = Category::destroy($id);
         return redirect()->back();
     }
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
 }

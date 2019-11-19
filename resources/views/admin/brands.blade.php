@@ -71,7 +71,7 @@
             <div class="modal-dialog" role="form">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="modalLabel">Имя категории</h5>
+                        <h5 class="modal-title" id="modalLabel">Название бренда</h5>
                         <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>

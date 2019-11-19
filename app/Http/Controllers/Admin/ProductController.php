@@ -69,7 +69,7 @@ class ProductController extends Controller
         $type = Product::all()->pluck('type')->unique();
         $family = Product::all()->pluck('family')->unique();
         $gender = Product::all()->pluck('gender')->unique();
-        $images = ProductImage::all();
+        $images = ProductImage::all()->where('product_id', $id);
 //        $test =
 //        dd($images);
         return view('admin/product-show', compact('product' , 'productCategory',
@@ -109,6 +109,8 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $delete = Product::find($id);
+        $delete->delete();
+        return redirect()->back();
     }
 }

@@ -1,9 +1,7 @@
 
-</sectio class="features">
+{{--</section class="features">--}}
     <div class="container">
-
         <h2 class="section-title features-title"><span class="section-title-fixed">ХИТЫ ПРОДАЖ</span></h2>
-
         <div class="features-products product-list-4">
         @foreach($populars as $product)
                 @if(($product->popular  !=0))
@@ -16,7 +14,7 @@
                 </div>
                 <div class="product__img">
                     <a href="product.html">
-                        <img src="{{$product->images->path}}" alt="" class="img-fluid">
+                        <img src="{{\Illuminate\Support\Facades\Storage::url($product->images->path)}}" alt="" class="img-fluid">
                     </a>
                 </div>
                 <div class="product__title">{{$product->name}}</div>
@@ -31,14 +29,13 @@
                     <span class="old-price">{{$product->old_price}} грн</span>
                     <span class="new-price">{{$product->price}}грн</span>
                 </div>
-                <a href="{{ route('add_cart' ,[app()->getLocale(), $product->id])}}" class="g-btn g-btn--product add-to-cart"><i class="product-cart-icon"></i>Купить со скидкой</a>
+                <a href="{{ route('add_cart' , $product->id)}}" class="g-btn g-btn--product add-to-cart"><i class="product-cart-icon"></i>Купить со скидкой</a>
             {{--</div>--}}
-
-        @endif
-        </div>
+                @endif
+            </div>
     @endforeach
         </div>
     </div>
 
-</section>
+{{--</section>--}}
 

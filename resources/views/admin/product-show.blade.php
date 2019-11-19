@@ -84,25 +84,26 @@
     </form>
     <h1 style="margin-top: 20px" >Фото</h1>
     <div class="admin-row">
-{{--        @dd()--}}
-
-
-            @method('PUT')
+        @method('PUT')
+        @foreach($images as $image)
             <div class="admin-item">
-                <p class="admin-title"></p>
+                {{--<p class="admin-title"></p>--}}
                 <div class="admin-img">
-                    <img src="{{asset('/storage/' .  $images->where('id' , $product->id))}}" class="rounded" alt=""
+                    <img src="{{ \Illuminate\Support\Facades\Storage::url($image->path)}}" class="rounded" alt=""
                          style="+max-height: 110px ; margin-top: 20px">
                                   </div>
-                <form action="{{route('deletePhoto' , $product->id)}}" method="post" >
+
+                    {{--@dd($image->path)--}}
+                <form action="{{route('deletePhoto' , $image->id)}}" method="post" >
+
                     @csrf
                     @method('DELETE')
                     <input type="submit" type="submit" value="Удалить" onclick="confirm('Вы уверены?') "
                            class="btn btn-sm btn-danger" />
                 </form>
             </div>
-
     </div>
+    @endforeach
     <form action="{{route('addNewPhoto' , $product->id)}}" enctype="multipart/form-data" method="post">
        @csrf
         <div class="form-group">

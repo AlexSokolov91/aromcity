@@ -1,14 +1,10 @@
 @extends('.layouts.app')
 @section('product-content')
-    @include('header')
     @include('.breadcrums')
-
-
-    <div class="categories">
-        <div class="container flex-container">
+        <div class="categories">
+            <div class="container flex-container">
     <!-- breadcrumbs-ended -->
-
-    <!-- categories-begins -->
+                <!-- categories-begins -->
     @include('.filters')
             <div class="main-container">
                 <h2 class="section-title categories-title">
@@ -26,7 +22,7 @@
                     <div class="product__img">
                         @if(!empty($product->images->path))
                         <a href="{{route('product.show' , $product->id)}}">
-                            <img src="{{$product->images->path}}" alt="" class="img-fluid">
+                            <img src="{{\Illuminate\Support\Facades\Storage::url($product->images->path)}}" alt="" class="img-fluid">
                        @endif
                         </a>
                     </div>
@@ -124,7 +120,7 @@
     <!-- callback-ended -->
 
     <!-- policy-begins -->
-@include('footer')
+
     @section('scripts')
     <script src="{{asset('js/script.js')}}"> </script>
     <script src="{{asset('js/addToCart.js')}}"></script>

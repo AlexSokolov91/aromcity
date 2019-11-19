@@ -57,7 +57,9 @@ Route::get('/' , function (){
                     Route::resource('admin/brands' , 'Admin\BrandController');
                     Route::resource('admin/products', 'Admin\ProductController');
                     Route::post('admin/products/{id}/photo/upload' , 'Admin\ProductImageController@upload')->name('addNewPhoto');
-            Route::delete('admin/productsImage/destroy/{id}' , 'Admin\ProductImageController@destroy')->name('deletePhoto');
+                    Route::delete('admin/productsImage/destroy/{id}' , 'Admin\ProductImageController@destroy')->name('deletePhoto');
+                    Route::resource('admin/categories' , 'Admin\CategoryController');
+                    Route::get('admin/navigations' , 'Admin\NavigationController@index')->name('admin.navigations');
         });
 
 

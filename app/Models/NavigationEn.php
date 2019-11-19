@@ -10,8 +10,8 @@ class NavigationEn extends Model
     {
         return $this->hasMany(Product::class);
     }
-//    public function navigation()
-//    {
-//        return $this->hasOne(Navigation::class);
-//    }
+    public function navigation()
+    {
+        return $this->hasOne(Navigation::class);
+    }
 }

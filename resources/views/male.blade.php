@@ -1,6 +1,5 @@
 @extends('.layouts.app')
 @section('product-content')
-    @include('header')
     @include('breadcrums')
 
     <div class="categories">
@@ -34,7 +33,7 @@
                         <div class="product__img">
                             <a href="{{route('product.show' , $product->id)}}">
                               @if(!empty($product->images->path))
-                                <img src="{{$product->images->path}}" alt="" class="img-fluid">
+                                <img src="{{\Illuminate\Support\Facades\Storage::url($product->images->path)}}" alt="" class="img-fluid">
                            @endif
                             </a>
                         </div>
@@ -88,7 +87,7 @@
     <!-- categories-ended -->
 
     <!-- footer-begins -->
-@include('footer')
+{{--@include('footer')--}}
 @section('scripts')
     <script src="{{asset('js/addToCart.js')}}"></script>
     <script src="{{asset('js/script.js')}}"> </script>

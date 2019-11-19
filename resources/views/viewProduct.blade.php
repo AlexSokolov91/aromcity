@@ -1,19 +1,7 @@
 @extends('.layouts.app')
 {{--@dd($product)--}}
 @section('product-content')
-    @include('header')
-
-    <div class="breadcrumbs">
-        <div class="container">
-            <ul class="breadcrumb">
-                <li class="breadcrumb-item"><a href="javascript:void(0);">Главная</a></li>
-                <li class="breadcrumb-item"><a href="javascript:void(0);">Женские духи</a></li>
-                <li class="breadcrumb-item"><a href="javascript:void(0);">Versace Versace</a></li>
-                <li class="breadcrumb-item"><a href="javascript:void(0);">Bright Crystal</a></li>
-                <li class="breadcrumb-item active">Туалетная вода 90 ml</li>
-            </ul>
-        </div>
-    </div>
+    @include('.breadcrums')
     <div class="container product-details-container">
         <h2 class="section-title">
             <span>{{$product->name}} <span class="product-descr">{{$product->type}}</span></span>
@@ -24,7 +12,7 @@
                     <span class="product__sale-text">sale</span>
                 </div>
                 <a href="javascript:void(0);">
-                    <img src="{{$product->images->path}}" alt="">
+                    <img src="{{\Illuminate\Support\Facades\Storage::url($product->images->path)}}" alt="">
                 </a>
             </div>
                 <div class="product-details__information">
@@ -57,8 +45,7 @@
                     </a>
                 </div>
             </div>
-
-            @include('viewProductBanner')
+                @include('viewProductBanner')
             <div class="container">
                 <div class="stock-line">
                     <div class="stock-line__img">
@@ -84,9 +71,7 @@
                     </div>
                 </div>
             </div>
-
-            <div class="container similar-products-container">
-
+                <div class="container similar-products-container">
                 <h2 class="section-title similar-products-title"><span class="section-title-fixed">ПОХОЖИЕ ТОВАРЫ</span></h2>
                 <div class="similar-products-slider">
                     <div class="js-similar-products">
@@ -101,7 +86,7 @@
                                     </div>
                                     <div class="product__img">
                                         <a href="{{route('products.show',  $item->id)}}">
-                                            <img src="{{$item->images->path}}" alt="" class="img-fluid">
+                                            <img src="{{\Illuminate\Support\Facades\Storage::url($item->images->path)}}" alt="" class="img-fluid">
                                         </a>
                                     </div>
                                     <div class="product__title">{{$item->name}}</div>
@@ -139,7 +124,6 @@
                 <span id="" class="rating" data-val="{{$comment->rating}}" data-stars='5' data-input=".rating-value" data-change="true">
                 <input type="hidden" name="" class="rating-value" size="5">
                 </span>
-
                                                     {{--@dd($comment->created_at)--}}
                                                 </div>
                                             </div>
@@ -183,5 +167,5 @@
             </div>
         </div>
     </div>
-        @include('footer')
+        {{--@include('footer')--}}
     @endsection

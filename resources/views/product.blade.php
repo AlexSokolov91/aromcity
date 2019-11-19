@@ -9,7 +9,9 @@
                  </div>
             <div class="product__img">
                 <a href="{{ route('products.show' , $product->id)}}">
-                    <img src="{{$product->images->path}}" alt="" class="img-fluid">
+                   @if(!empty($product->images->path))
+                    <img src="{{\Illuminate\Support\Facades\Storage::url($product->images->path)}}" alt="" class="img-fluid">
+                @endif
                 </a>
             </div>
             <div class="product__title">{{$product->name}}</div>

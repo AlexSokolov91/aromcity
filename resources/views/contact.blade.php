@@ -1,15 +1,10 @@
 @extends('.layouts.app')
     @section('product-content')
-    @include('header')
     @include('breadcrums')
-
     <div class="contacts">
         <div class="container flex-container">
-
             <div class="side-container">
-
                 <div class="side-container-title">ВЫ СМОТРЕЛИ</div>
-
                 <div class="product">
                     <div class="product__sale">
                         <span class="product__sale-text">sale</span>
@@ -149,10 +144,7 @@
                     <textarea name="" class="g-text-area" placeholder="Сообщение"></textarea>
                     <input type="submit" class="g-btn g-btn--main-form" value="Отправить">
                 </form>
-
             </div>
-
         </div>
     </div>
-        @include('footer')
     @endsection

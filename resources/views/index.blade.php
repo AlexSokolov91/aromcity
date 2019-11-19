@@ -5,8 +5,6 @@
     {{--<link rel="stylesheet" href="/css/libs.min.css">--}}
 {{--@endsection--}}
 @section('product-content')
-    @include('.header')
     @include('slider')
     @include('popularProduct')
-    @include('footer')
     @endsection

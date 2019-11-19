@@ -33,8 +33,8 @@
             <nav class="nav nav-pills flex-column flex-sm-row">
                 <a class="flex-sm-fill text-sm-center nav-link " href="{{route('brands.index')}}">Бренды</a>
                 <a class="flex-sm-fill text-sm-center nav-link" href="{{route('products.index')}}">Товар</a>
-                {{--<a class="flex-sm-fill text-sm-center nav-link" href="{{route('admin.comment')}}">Отзывы</a>--}}
-                {{--<a class="flex-sm-fill text-sm-center nav-link" href="{{route('admin.navigate')}}">Навигация</a>--}}
+                <a class="flex-sm-fill text-sm-center nav-link" href="{{route('categories.index')}}">Категории</a>
+                <a class="flex-sm-fill text-sm-center nav-link" href="{{route('admin.navigations')}}">Навигация</a>
                 <ul class="nav nav-pills">
                     <li class="nav-item">
 
