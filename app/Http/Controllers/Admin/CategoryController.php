@@ -91,4 +91,8 @@ class CategoryController extends Controller
         $categoryDelete = Category::destroy($id);
         return redirect()->back();
     }
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
 }

@@ -14,7 +14,7 @@ class CreateNavigationEns extends Migration
     public function up()
     {
         Schema::create('navigation_ens', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->bigIncrements('id')->references('id')->on('navigations');
             $table->string('title');
             $table->string('route_name');
             $table->boolean('active')->default(0);

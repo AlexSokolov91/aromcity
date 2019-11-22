@@ -35,4 +35,8 @@ class ProductImageController extends Controller
         return Redirect::back()->with('delete' , 'The image has been successfully deleted!');
 
     }
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
 }

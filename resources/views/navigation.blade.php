@@ -10,11 +10,13 @@
         <div class="main-nav__wrapper">
             <ul class="main-nav">
                 @if(app()->getLocale() == 'ru')
-
-            @foreach($navigations as $item)
+                    @foreach($navigations->where('active') as $item)
             {{--@dd($navigations)--}}
+                    {{--@if($item->activ != 0)--}}
                         <li class="main-nav__item"><a href="{{route($item->route_name, app()->getLocale())}}">{{$item->title}}</a></li>
-                @endforeach
+
+                {{--@endif--}}
+                    @endforeach
                 @endif
                 {{--@else--}}
                @if(app()->getLocale() == 'en')
@@ -30,9 +32,8 @@
                        @foreach($brands as $brand)
                         <span class="space-filler"></span>
                         <li><a href="{{route('brand.show' , $brand->id)}}">{{$brand->brand_name}}</a></li>
-
-                        @endforeach
-                    </ul>
+                       @endforeach
+                   </ul>
                 </li>
                 <li class="main-nav__item"><a href="{{route('stocks')}}">@lang('navigation.Акции')</a></li>
                 <li class="main-nav__item"><a href="{{route('delivery')}}">@lang('navigation.Доставка')</a></li>

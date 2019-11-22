@@ -2,13 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\Brand;
-use App\Models\Navigation;
-use Gate;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class BrandController extends Controller
+class OrderController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,8 +14,7 @@ class BrandController extends Controller
      */
     public function index()
     {
-        $brands = Brand::all();
-        return view('Admin/brands' , compact('brands'));
+        //
     }
 
     /**
@@ -39,9 +35,7 @@ class BrandController extends Controller
      */
     public function store(Request $request)
     {
-        $createBrand = Brand::create($request->except('token'));
-        return redirect()->back();
-
+        //
     }
 
     /**
@@ -52,7 +46,7 @@ class BrandController extends Controller
      */
     public function show($id)
     {
-
+        //
     }
 
     /**
@@ -63,8 +57,7 @@ class BrandController extends Controller
      */
     public function edit($id)
     {
-        $brandEdit = Brand::find($id);
-        return view('Admin/brands', compact('brandEdit'));
+        //
     }
 
     /**
@@ -76,14 +69,7 @@ class BrandController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $brandEdit = Brand::find($id);
-        $data = $request->except('_token');
-        $brands = Brand::find($data['id']);
-//        if(Gate::allows('update-brands' , $brands))
-        $brandEdit->fill($request->except('_token'));
-        $brandEdit->save();
-//        dd($brandEdit);
-        return redirect()->back();
+        //
     }
 
     /**
@@ -94,13 +80,6 @@ class BrandController extends Controller
      */
     public function destroy($id)
     {
-        $deleteBrand = Brand::find($id);
-        $deleteBrand->delete();
-        return redirect()->back();
+        //
     }
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
 }

@@ -60,6 +60,11 @@ Route::get('/' , function (){
                     Route::delete('admin/productsImage/destroy/{id}' , 'Admin\ProductImageController@destroy')->name('deletePhoto');
                     Route::resource('admin/categories' , 'Admin\CategoryController');
                     Route::get('admin/navigations' , 'Admin\NavigationController@index')->name('admin.navigations');
+                    Route::put('admin/navigations/{id}/update',  'Admin\NavigationController@update')->name('admin.navigation-update');
+                    Route::put('admin/navigations/{id}/brand-update' , 'Admin\NavigationController@brandUpdate')->name('admin.navigation-brand-update');
+                    Route::get('admin/navigationEns' , 'Admin\NavigationController@navigationEn')->name('admin.navigationEns');
+                    Route::resource('admin/users' , 'Admin\UserController');
+                    Route::get('admin/users-add-user' , 'Admin\UserController@createUser')->name('admin.create-user');
         });
 
 

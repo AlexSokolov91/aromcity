@@ -29,16 +29,22 @@
     <div id="app">
 
         <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
-
+            @if(\Illuminate\Support\Facades\Auth::user())
             <nav class="nav nav-pills flex-column flex-sm-row">
                 <a class="flex-sm-fill text-sm-center nav-link " href="{{route('brands.index')}}">Бренды</a>
                 <a class="flex-sm-fill text-sm-center nav-link" href="{{route('products.index')}}">Товар</a>
                 <a class="flex-sm-fill text-sm-center nav-link" href="{{route('categories.index')}}">Категории</a>
+
                 <a class="flex-sm-fill text-sm-center nav-link" href="{{route('admin.navigations')}}">Навигация</a>
-                <ul class="nav nav-pills">
+                {{--@if(\Illuminate\Support\Facades\Auth::user()->roles->first()->name == 'Super-Admin')--}}
+                @if(\Illuminate\Support\Facades\Auth::user()->roles->first()->name == 'Super-Admin')
+                <a class="flex-sm-fill text-sm-center nav-link" href="{{route('users.index')}}">Редактирование пользователей</a>
+                @endif
+                    <ul class="nav nav-pills">
                     <li class="nav-item">
 
                     </li>
+                        @endif
                     {{--<li class="nav-item dropdown">--}}
                         {{--<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Баннеры</a>--}}
                         {{--<div class="dropdown-menu">--}}
@@ -58,9 +64,11 @@
             <ul class="navbar-nav ml-auto">
                 <!-- Authentication Links -->
                 @guest
+                    @if(\Illuminate\Support\Facades\Auth::user())
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
                     </li>
+                        @endif
                     {{--@if (Route::has('register'))--}}
                     {{--<li class="nav-item">--}}
                     {{--<a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>--}}

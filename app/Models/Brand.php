@@ -9,7 +9,7 @@ class Brand extends Model
 {
     protected $fillable =
         [
-            'brand_name', 'user_id',
+            'brand_name', 'user_id', 'active'
         ];
     public function product()
     {

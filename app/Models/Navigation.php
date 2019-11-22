@@ -6,6 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Navigation extends Model
 {
+    protected $fillable = [
+      'active',
+    ];
     public function product()
     {
         return $this->hasMany(Product::class);

@@ -113,4 +113,8 @@ class ProductController extends Controller
         $delete->delete();
         return redirect()->back();
     }
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
 }
