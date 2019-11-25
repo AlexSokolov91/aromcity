@@ -66,5 +66,8 @@ class Product extends Model
     {
         return $this->belongsTo(ProductEn::class , 'id');
     }
-
+    public function orderProduct()
+    {
+        return $this->belongsTo(OrderProduct::class);
+    }
 }

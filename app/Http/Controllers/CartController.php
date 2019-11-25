@@ -31,6 +31,7 @@ class CartController extends Controller
     public function show()
     {
         $total = \Cart::session(Session::getId())->getTotal();
+        @dd($total);
 //        dd(\Cart::session(session_id())->getTotalQuantity());
 //        dd(\Cart::session(session_id())->getContent());
         return view('cart', ['products' => \Cart::session(session_id())->getContent() ,

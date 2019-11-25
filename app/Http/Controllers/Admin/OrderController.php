@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\Order;
+use App\Models\OrderProduct;
+use App\Models\Product;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -14,7 +17,8 @@ class OrderController extends Controller
      */
     public function index()
     {
-        //
+        $orders = Order::all();
+        return view('admin/order-index', compact('orders'));
     }
 
     /**
@@ -46,7 +50,11 @@ class OrderController extends Controller
      */
     public function show($id)
     {
-        //
+        $order = Order::with('orderProducts')->find($id);
+        $orderProducts = OrderProduct::with('product')->where('order_id', $id)->get();
+//        $productId = OrderProduct::all('product_id')->find($id);
+        $products = Product::select('id', 'name')->get();
+        return view('admin/order-show', compact('order', 'orderProducts' , 'products'));
     }
 
     /**

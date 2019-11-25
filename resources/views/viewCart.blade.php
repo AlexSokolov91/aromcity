@@ -80,7 +80,7 @@
     <input id="phone" name="client_phone" type="text" class="g-input" placeholder="Номер телефона" required>
     </div>
     <div class="cart__total">{{$total}} грн</div>
-        <button type="submit" class="g-btn g-btn--checkout" value="Заказать"> </button>
+        <button type="submit" class="g-btn g-btn--checkout" value="Заказать">Заказать</button>
     </div>
         {{--</div>--}}
     </div>
@@ -160,6 +160,23 @@
         $("cart__product-amount").change(function () {
             var option = $(this).val();
             $("#form__checkout").attr("actions", "list/" + option);
+        });
+    </script>
+
+    <script>
+        $('.cart__product-remove').on('click' , function (e) {
+            e.preventDefault();
+            var href = $(e.currentTarget).attr('href');
+            // console.log(href);
+            var deleted = $.get(href , function (response) {
+                // console.log(deleted);
+
+                var result = $.get('/cart/show', function (result) {
+                    // console.log(result);
+                    $('.cart__product-list').html(result);
+
+                })
+            });
         });
     </script>
 @endsection

@@ -11,9 +11,11 @@
         "php": "^7.3.1",
         "darryldecode/cart": "~4.0",
         "fideloper/proxy": "^4.0",
+        "guzzlehttp/guzzle": "^6.4",
         "insenseanalytics/laravel-nova-permission": "^0.1.2",
         "laravel/framework": "5.8.35",
-        "laravel/tinker": "^1.0"
+        "laravel/tinker": "^1.0",
+        "lis-dev/nova-poshta-api-2": "^0.1.1"
     },
     "require-dev": {
         "beyondcode/laravel-dump-server": "^1.0",

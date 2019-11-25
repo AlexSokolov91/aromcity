@@ -40,6 +40,7 @@
                 @if(\Illuminate\Support\Facades\Auth::user()->roles->first()->name == 'Super-Admin')
                 <a class="flex-sm-fill text-sm-center nav-link" href="{{route('users.index')}}">Редактирование пользователей</a>
                 @endif
+                <a class="flex-sm-fill text-sm-center nav-link" href="{{route('orders.index')}}">Заказы</a>
                     <ul class="nav nav-pills">
                     <li class="nav-item">
 

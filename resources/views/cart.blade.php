@@ -54,7 +54,6 @@
                             // console.log(result);
                               $('.cart__product-list').html(result);
 
-
                           })
                           });
                           });

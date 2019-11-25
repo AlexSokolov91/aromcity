@@ -65,6 +65,7 @@ Route::get('/' , function (){
                     Route::get('admin/navigationEns' , 'Admin\NavigationController@navigationEn')->name('admin.navigationEns');
                     Route::resource('admin/users' , 'Admin\UserController');
                     Route::get('admin/users-add-user' , 'Admin\UserController@createUser')->name('admin.create-user');
+                    Route::resource('admin/orders', 'Admin\OrderController');
         });
 
 
