@@ -7,7 +7,8 @@ use App\Models\OrderProduct;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-
+use GuzzleHttp\Client;
+use LisDev\Delivery\NovaPoshtaApi2;
 class OrderController extends Controller
 {
     /**
@@ -39,7 +40,7 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
     }
 
     /**
@@ -54,7 +55,31 @@ class OrderController extends Controller
         $orderProducts = OrderProduct::with('product')->where('order_id', $id)->get();
 //        $productId = OrderProduct::all('product_id')->find($id);
         $products = Product::select('id', 'name')->get();
-        return view('admin/order-show', compact('order', 'orderProducts' , 'products'));
+
+        $url = "http://novaposhta.ua/v2.0/json/Address/getAreas";
+        $client = new Client();
+        $response = $client->request('POST', $url, [
+            "json" => [
+                "apiKey" => "14e531339007f5b8f24bdea4ce0b6fd3" ,
+                "modelName" => "Address" ,
+                "calledMethod" => "getAreas" ,
+                "methodProperties" => [
+                    "ref" => "",
+                    "AreasCenter" => ""
+                ]
+            ]]);
+
+        $getAreas = collect(json_decode($response->getBody()->getContents()));
+
+        $np = new NovaPoshtaApi2('14e531339007f5b8f24bdea4ce0b6fd3');
+        $cities = $np->getCities();
+        $wh = $np->getWarehouses('' , '');
+
+        $np = new NovaPoshtaApi2('14e531339007f5b8f24bdea4ce0b6fd3');
+        $find = $np->findCityByRegion();
+       $status = ['Новый заказ','Подтвержден', 'Перезвонить', 'Неправильный номер', 'Отказ'];
+        return view('admin/order-show', compact('order', 'orderProducts' , 'products' , 'getAreas',
+             'cities', 'wh' , 'find', 'status'));
     }
 
     /**
@@ -63,9 +88,10 @@ class OrderController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($id, Request $request)
     {
-        //
+
+        return view('admin/order-show' );
     }
 
     /**
@@ -77,7 +103,20 @@ class OrderController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'city' => 'required',
+            'warehouse' => 'required',
+            'quantity' => 'min:1'
+
+        ]);
+
+        $order = Order::with('orderProducts')->find($id);
+        $order->fill($request->except('_method','_token'));
+        $order->save();
+//        dd($request->all());
+
+
+        return redirect()->back();
     }
 
     /**
@@ -89,5 +128,11 @@ class OrderController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+
+    public function __construct()
+    {
+        $this->middleware('auth');
     }
 }

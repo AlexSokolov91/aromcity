@@ -66,6 +66,10 @@ Route::get('/' , function (){
                     Route::resource('admin/users' , 'Admin\UserController');
                     Route::get('admin/users-add-user' , 'Admin\UserController@createUser')->name('admin.create-user');
                     Route::resource('admin/orders', 'Admin\OrderController');
+
+                    Route::get('/api' , 'Admin\ApiController@getWarehouse');
+                    Route::get('/api/getCities' , 'Admin\ApiController@getCities');
+                    Route::get('/api/getWarehouse' , 'Admin\ApiController@getWarehouse');
         });
 
 

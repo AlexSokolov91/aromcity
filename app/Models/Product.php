@@ -68,6 +68,10 @@ class Product extends Model
     }
     public function orderProduct()
     {
-        return $this->belongsTo(OrderProduct::class);
+        return $this->belongsToMany(OrderProduct::class);
     }
+//    public function order()
+//    {
+//        return $this->belongsTo(Order::class);
+//    }
 }

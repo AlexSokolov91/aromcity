@@ -1,42 +1,7 @@
-// var route = 'show_cart';
-// $('.lang').on('change' , function (l) {
-//     locale = (l.currentTarget).attr('data-value');
-   // console.log(locale);
-// });
-//
-//         $('.add-to-cart').on('click' , function (e) {
-//             e.preventDefault();
-//             // console.log(locale);
-//             var href = $(e.currentTarget).attr('data-href');
-//
-//             console.log(href);
-//             // $.get(href, function(response) {
-//                 var result = $.get( href, function (result) {
-//                     console.log(result);
-//                     $('.cart__product-list').html(result);
-            // $.get(href, function(response) {
-            // var result = $.get( href, function (result) {
-            //     $('.cart-total').html(result.count);
-            //
-            //
-            //     var view = [];
-            //     var name = [];
-            //     var img =[];
-            //     var getImg = [];
-            //     var quantity = [];
-            //     console.log(result);
-            //     $(result.products).each(function (index, value) {
-            //         $('.cart__product-total').html(result.total);
-            //         for (productId in value) {
-                        // console.log(productId);
-                        // console.log(value[productId]);
-                        // img = value[productId];
-                        // $('.cart__product-title').append(value[productId].name);
-                        // $('.cart__product-price').html(value[productId].price);
+
 $('.add-to-cart').on('click' , function (e) {
     e.preventDefault();
     var href = $(e.currentTarget).attr('data-href');
-    console.log(href);
     $.get(href, function(response) {
         var result = $.get('/cart/show', function (result) {
 

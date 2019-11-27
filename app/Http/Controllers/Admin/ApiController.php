@@ -10,7 +10,9 @@ namespace App\Http\Controllers\Admin;
 
 
 use App\Http\Controllers\Controller;
-use http\Env\Request;
+
+
+use Illuminate\Http\Request;
 use LisDev\Delivery\NovaPoshtaApi2;
 
 class ApiController extends Controller
@@ -19,8 +21,8 @@ class ApiController extends Controller
     {
         $np = new NovaPoshtaApi2('14e531339007f5b8f24bdea4ce0b6fd3');
         $wh = $np->getWarehouses($request->getCities, '');
+        return $wh;
 
-        return view('admin/order-show.blade.php' , compact('wh'));
     }
     public function getWarehouse(Request $request)
     {

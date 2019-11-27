@@ -31,8 +31,9 @@ class CartController extends Controller
     public function show()
     {
         $total = \Cart::session(Session::getId())->getTotal();
-        @dd($total);
-//        dd(\Cart::session(session_id())->getTotalQuantity());
+//        dd($total);
+       $test = \Cart::getTotalQuantity();
+
 //        dd(\Cart::session(session_id())->getContent());
         return view('cart', ['products' => \Cart::session(session_id())->getContent() ,
             'total' => $total]);
@@ -41,13 +42,13 @@ class CartController extends Controller
     public function remove($id)
     {
         \Cart::session(Session::getId())->remove($id);
-        return redirect()->back();
+        return view('cart' , ['products' => \Cart::session(session_id())->getContent()]);
 
     }
 
     public function update($id)
     {
-        Cart::update($id);
+        \Cart::update($id);
 
     }
 
