@@ -15,12 +15,11 @@ class CreateBrandsTable extends Migration
     {
         Schema::create('brands', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->bigInteger('user_id');
+            $table->bigInteger('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->char('brand_name');
             $table->boolean('active')->default(0);
             $table->timestamps();
-            $table->foreign('user_id')->references('id')->on('users')
-                ->onDelete('cascade');
+
 
         });
     }

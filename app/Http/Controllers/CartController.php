@@ -24,26 +24,32 @@ class CartController extends Controller
             'attributes' => $product,
         ));
 
-        return response()->json(['count' => \Cart::session(Session::getId())->getContent() , 'session_id' => $session_id , 'product' => $product]);
+        return response()->json(['count' => \Cart::session(session_id())->getContent() , 'session_id' => $session_id , 'product' => $product]);
 //        return view('cart' , compact('product' , 'session_id'));
     }
 
     public function show()
     {
-        $total = \Cart::session(Session::getId())->getTotal();
-//        dd($total);
-       $test = \Cart::getTotalQuantity();
+        $total = \Cart::session(session_id())->getTotal();
 
-//        dd(\Cart::session(session_id())->getContent());
         return view('cart', ['products' => \Cart::session(session_id())->getContent() ,
             'total' => $total]);
+    }
+    public function showViewCart()
+    {
+        $total = \Cart::session(session_id())->getTotal();
+        $populars = Product::with('images')->where('popular', '1')->limit(2)->get()->random();
+        return view('remove-cart', ['products' => \Cart::session(session_id())->getContent() , 'populars' => $populars,
+            'total' => $total , 'populars' => $populars]);
     }
 
     public function remove($id)
     {
-        \Cart::session(Session::getId())->remove($id);
-        return view('cart' , ['products' => \Cart::session(session_id())->getContent()]);
-
+        \Cart::session(session_id())->remove($id);
+        $total = \Cart::session(session_id())->getTotal();
+        $populars = Product::with('images')->where('popular', '1')->limit(2)->get()->random();
+        return view('remove-cart', ['products' => \Cart::session(session_id())->getContent() , 'populars' => $populars,
+        'total' => $total , 'populars' => $populars]);
     }
 
     public function update($id)
@@ -60,9 +66,12 @@ class CartController extends Controller
 
     public function viewCart()
     {
-        $populars = Product::with('images')->where('popular' , '1')->limit(2)->get()->random();
-        return view('viewCart', [ 'products' => \Cart::session(session_id())->getContent(),
-            'total' => \Cart::session(Session::getId())->getSubTotal() , 'populars' => $populars,
+
+        $populars = Product::with('images')->where('popular', '1')->limit(2)->get()->random();
+        return view('viewCart', ['products' => \Cart::session(session_id())->getContent(),
+            'total' => \Cart::session(session_id())->getSubTotal(), 'populars' => $populars,
         ]);
     }
+
+
 }

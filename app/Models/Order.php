@@ -11,7 +11,6 @@ class Order extends Model
         'client_name',
         'client_phone',
         'order_status',
-        'one_unit_price',
         'total_price',
         'comments',
         'city',
@@ -20,7 +19,7 @@ class Order extends Model
 
     public function orderProducts()
     {
-        return $this->hasMany(OrderProduct::class);
+        return $this->hasOne(OrderProduct::class);
     }
 
 //    public function products()

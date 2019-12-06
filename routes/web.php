@@ -42,6 +42,7 @@ Route::get('/' , function (){
         Route::get('/cart/add/{id}', 'CartController@add')->name('add_cart');
         Route::get('/cart/show', 'CartController@show')->name('show_cart');
         Route::get('/cart/remove/{id}', 'CartController@remove')->name('cart.remove');
+        Route::get('/cart/remove' , 'CartController@showViewCart');
         Route::get('/view_cart', 'CartController@viewCart')->name('cart.view');
         Route::post('/store', 'OrderController@store')->name('new_order');
         Route::get('/brands/{brand}', 'ProductController@showProduct')->name('brand.show');
@@ -66,7 +67,10 @@ Route::get('/' , function (){
                     Route::resource('admin/users' , 'Admin\UserController');
                     Route::get('admin/users-add-user' , 'Admin\UserController@createUser')->name('admin.create-user');
                     Route::resource('admin/orders', 'Admin\OrderController');
-
+                    Route::delete('admin/order-product/destroy/{id}', 'Admin\OrderController@destroyProduct')->name('admin-order-destroy-product');
+                    Route::post('admin/create/order-products' , 'Admin\OrderController@createProduct')->name('admin.order-create-product');
+                    Route::resource('admin/comments' , 'Admin\CommentController');
+                    Route::get('admin/comments/{id}/show_comments' , 'Admin\CommentController@showProductComments')->name('admin-comment-show-product');
                     Route::get('/api' , 'Admin\ApiController@getWarehouse');
                     Route::get('/api/getCities' , 'Admin\ApiController@getCities');
                     Route::get('/api/getWarehouse' , 'Admin\ApiController@getWarehouse');

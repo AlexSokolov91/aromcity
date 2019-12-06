@@ -39,6 +39,7 @@
 <script src="{{asset('js/jquery.min.js')}}"></script>
 <script src="{{asset('js/scripts.js')}}"></script>
 <script src="{{asset('js/libs.min.js')}}"></script>
+<script src="{{asset('js/addToCart.js')}}"></script>
 @yield('cart')
 @yield('scripts')
 @yield('viewCart')

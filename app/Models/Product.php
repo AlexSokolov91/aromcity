@@ -44,9 +44,9 @@ class Product extends Model
         return $this->belongsTo(Brand::class);
     }
 
-    public function comments()
+    public function comment()
     {
-        return $this->belongsToMany(Comment::class);
+        return $this->hasOne(Comment::class);
     }
 
     public function orders()

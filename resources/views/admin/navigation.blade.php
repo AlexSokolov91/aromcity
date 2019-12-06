@@ -1,5 +1,6 @@
 @extends('.layouts.admin')
 @section('content')
+
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 <table id="table">
     <tr>
@@ -57,4 +58,5 @@
     @endforeach
     </table>
 <span style="margin-left: 20px"> <tr> <a href="{{route('admin.navigationEns')}}">English navigations</a> </tr> </span>
+
 @endsection

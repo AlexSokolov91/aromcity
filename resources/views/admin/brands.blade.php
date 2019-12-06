@@ -13,11 +13,8 @@
             @endif
             </tr>
             </thead>
-
             <tbody>
-{{--            @dd(\Illuminate\Support\Facades\Auth::user()->roles->first()->name)--}}
-
-            @foreach($brands as  $brand)
+                @foreach($brands as  $brand)
                 {{--@dd($categories , $categoryEdit)--}}
                 <tr>
                     <th scope="row">{{$brand->id}}</th>
@@ -36,8 +33,6 @@
                                         <span aria-hidden="true">&times;</span>
                                     </button>
                                 </div>
-
-
                                 <form action="{{route('brands.update' , $brand->id)}}" method="post">
                                     <div class="modal-body">
                                         @csrf
@@ -53,14 +48,11 @@
                         <td>
                             <form method="post" action="{{route('brands.destroy' , $brand->id)}}">@csrf
                                 @method('DELETE')
-
-                            <button type="submit"> Удалить</button>
+                                <button type="submit"> Удалить</button>
                             </form>
                         </td>
                     @endif
                     @endforeach
-                    {{--@else--}}
-                    {{--@endif--}}
                 </tr>
                 <tr>
             </tbody>
@@ -78,10 +70,7 @@
                     </div>
                     <div class="modal-body">
                         <form action="{{route('brands.store')}}" method="post">@csrf
-                            {{--@if(auth()->user())--}}
-                            {{--@dd(auth()->user())--}}
                                 <input type="text" name="brand_name" class="col-12">
-                            {{--@dd($request->session()->all());--}}
                             <input type="hidden" value="{{auth()->user()->id}}" name="user_id">
                             <button class="btn-success btn" type="submit">Сохранить</button>
                         </form>

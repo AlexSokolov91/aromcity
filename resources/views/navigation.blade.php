@@ -25,13 +25,14 @@
                     <li class="main-nav__item"><a href="{{route($navigate->route_name, app()->getLocale())}}">{{$navigate->title}}</a></li>
                     @endforeach
                         @endif
-
                     <li class="main-nav__item dropdown">
                      <a href="category.html">@lang('navigation.Бренды')<i class="fa fa-angle-down fa-fw"></i></a>
                    <ul class="sub-nav">
                        @foreach($brands as $brand)
-                        <span class="space-filler"></span>
+                           @if(!empty ($brand->product))
+                           <span class="space-filler"></span>
                         <li><a href="{{route('brand.show' , $brand->id)}}">{{$brand->brand_name}}</a></li>
+                       @endif
                        @endforeach
                    </ul>
                 </li>

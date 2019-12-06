@@ -10,13 +10,15 @@ class OrderProduct extends Model
         [
             'order_id' ,
             'product_id',
-            'quantity'
+            'one_unit_price',
+            'quantity',
+
 
         ];
 
-    public function orders()
+    public function order()
     {
-        return $this->belongsToMany(Order::class);
+        return $this->belongsTo(Order::class);
     }
 
     public function product()

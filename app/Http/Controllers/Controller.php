@@ -28,7 +28,7 @@ class Controller extends BaseController
         \Illuminate\Support\Facades\View::share('categories', Category::with('products.brand')->get());
         \Illuminate\Support\Facades\View::share('headerBannerImages', HeaderBannerImage::get());
         \Illuminate\Support\Facades\View::share('logo', '/img/general/logo.png');
-        \Illuminate\Support\Facades\View::share('brands', Brand::get());
+        \Illuminate\Support\Facades\View::share('brands', Brand::with('product')->get());
         \Illuminate\Support\Facades\View::share('countries', Product::all('country')->unique('country'));
         \Illuminate\Support\Facades\View::share('family', Product::all('family')->unique('family'));
         \Illuminate\Support\Facades\View::share('type', Product::all('type')->unique('type'));

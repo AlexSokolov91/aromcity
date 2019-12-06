@@ -16,7 +16,7 @@
             </thead>
             {{--<tbody>--}}
             {{--@dd($users)--}}
-        @foreach($users as  $user)
+         @foreach($users as  $user)
                 @if($user->role_user->role_id !=1)
                 <tr>
                     {{--<th scope="row"></th>--}}

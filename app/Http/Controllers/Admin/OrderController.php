@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Models\Order;
 use App\Models\OrderProduct;
 use App\Models\Product;
+use function GuzzleHttp\Promise\all;
+use function GuzzleHttp\Promise\queue;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use GuzzleHttp\Client;
@@ -53,8 +55,7 @@ class OrderController extends Controller
     {
         $order = Order::with('orderProducts')->find($id);
         $orderProducts = OrderProduct::with('product')->where('order_id', $id)->get();
-//        $productId = OrderProduct::all('product_id')->find($id);
-        $products = Product::select('id', 'name')->get();
+        $products = Product::select('id', 'name' , 'price')->get();
 
         $url = "http://novaposhta.ua/v2.0/json/Address/getAreas";
         $client = new Client();
@@ -77,9 +78,19 @@ class OrderController extends Controller
 
         $np = new NovaPoshtaApi2('14e531339007f5b8f24bdea4ce0b6fd3');
         $find = $np->findCityByRegion();
-       $status = ['Новый заказ','Подтвержден', 'Перезвонить', 'Неправильный номер', 'Отказ'];
-        return view('admin/order-show', compact('order', 'orderProducts' , 'products' , 'getAreas',
-             'cities', 'wh' , 'find', 'status'));
+        $status = ['Новый заказ','Подтвержден', 'Перезвонить', 'Неправильный номер', 'Отказ'];
+
+        $oneOrderPrice = OrderProduct::select('one_unit_price' , 'quantity')->where('order_id' , $id)->get()->toArray();
+
+         $sum = 0;
+    foreach ($oneOrderPrice as $value)
+    {
+
+        $sum += $value['one_unit_price'] * $value['quantity'];
+    }
+
+    return view('admin/order-show', compact('order', 'orderProducts' , 'products' , 'getAreas',
+             'cities', 'wh' , 'find', 'status' , 'oneOrderPrice', 'sum'));
     }
 
     /**
@@ -103,20 +114,36 @@ class OrderController extends Controller
      */
     public function update(Request $request, $id)
     {
+//        dd($request->all());
         $this->validate($request, [
-            'city' => 'required',
-            'warehouse' => 'required',
+//            'city' => 'required',
+//            'warehouse' => 'required',
             'quantity' => 'min:1'
 
         ]);
 
         $order = Order::with('orderProducts')->find($id);
-        $order->fill($request->except('_method','_token'));
+        $order->fill($request->except('_method', '_token'));
         $order->save();
-//        dd($request->all());
 
+        $orderProducts = OrderProduct::with('orders')->find($id);
+        $orderProducts = $request->products;
 
-        return redirect()->back();
+        foreach ($orderProducts as $item) {
+            OrderProduct::query()
+                ->where('order_id', $item['order_product_id'])
+                ->where('product_id', $item['product_id'])
+                ->update(
+                    ['quantity' => $item['quantity']]
+                );
+            $orderProducts->find($id);
+
+//           $totalPrice = Order::with('orderProducts')->find($id);
+//            $totalPrice->orderProducts->where('order_id' , $id);
+//            $totalPrice->quantity;
+//            dd($totalPrice);
+            return redirect()->back();
+        }
     }
 
     /**
@@ -125,9 +152,34 @@ class OrderController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($id, Request $request)
     {
-        //
+//
+    }
+
+    public function destroyProduct($id, Request $request)
+    {
+
+        $orderProducts = OrderProduct::find($id);
+        $orderProducts->where('product_id' , $request->product_id);
+        $orderProducts->delete();
+        return redirect()->back();
+    }
+
+    public function createProduct(Request $request)
+    {
+
+        $create = new OrderProduct();
+        $create->fill($request->except('_method', '_token'));
+        $create->save();
+        return redirect()->back();
+
+
+    }
+
+    public function totalOrderSum()
+    {
+        return view('admin/order-show');
     }
 
 

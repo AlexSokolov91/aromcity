@@ -22,6 +22,7 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link  href="{{ asset('css/admin-product.css') }}">
+    <link href="{{asset('css/admin.css')}}">
 </head>
 <body>
 <div>
@@ -34,7 +35,7 @@
                 <a class="flex-sm-fill text-sm-center nav-link " href="{{route('brands.index')}}">Бренды</a>
                 <a class="flex-sm-fill text-sm-center nav-link" href="{{route('products.index')}}">Товар</a>
                 <a class="flex-sm-fill text-sm-center nav-link" href="{{route('categories.index')}}">Категории</a>
-
+                <a class="flex-sm-fill text-sm-center nav-link" href="{{route('comments.index')}}">Отзывы</a>
                 <a class="flex-sm-fill text-sm-center nav-link" href="{{route('admin.navigations')}}">Навигация</a>
                 {{--@if(\Illuminate\Support\Facades\Auth::user()->roles->first()->name == 'Super-Admin')--}}
                 @if(\Illuminate\Support\Facades\Auth::user()->roles->first()->name == 'Super-Admin')
@@ -97,8 +98,8 @@
     </div>
     <main class="py-4">
         @yield('content')
-
     </main>
 </div>
+<script src="{{asset('js/jquery.min.js')}}"></script>
 </body>
 </html>

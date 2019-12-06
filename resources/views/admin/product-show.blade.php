@@ -1,10 +1,13 @@
 @extends('.layouts.admin')
 @section('content')
+
+    <div class="container">
     <span style="margin-left: 10px ; font-size:25px"> product id {{$product->id}} </span>
     <form action="{{route('products.update' , $product->id)}}" method="post">
         @method('PUT')
+
         <div class="form-row">
-            <div class="col"><span style="margin-left: 10px"> Имя товара </span>
+            <div class="col-12"><span style="margin-left: 10px"> Имя товара </span>
                 <input type="text" name="name" class="form-control" value="{{$product->name}}">
             </div>
             @if($productCategory != null)
@@ -80,10 +83,11 @@
             <input  type="submit"  action="{{route('products.update' , $product->id)}}"  style="color: #2a9055; margin-left: 15px" value="Сохранить изменения">
             @csrf
             @method('put')
+
         </div>
     </form>
     <h1 style="margin-top: 20px" >Фото</h1>
-    <div class="admin-row">
+        <div class="admin-row">
         @method('PUT')
         @foreach($images as $image)
             <div class="admin-item">
@@ -118,6 +122,6 @@
             <input type="submit"  value="Сохранить"> @csrf
         </div>
     </form>
-    <br> <br>
-    </div>
+         <br> <br>
+        </div>
     @endsection

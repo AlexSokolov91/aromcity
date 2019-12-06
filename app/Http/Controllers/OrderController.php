@@ -18,15 +18,16 @@ class OrderController extends Controller
             'client_name' => 'required|min:3|max:100',
             'client_phone' => 'required|min:6'
         ]);
-//dd($request);
+//dd($request->all());
         $newOrder = Order::create($request->except('_token'));
-
+//        dd($newOrder);
         foreach ($request->product_id as $key => $id) {
 //            $quantity = $request->quantity;
                 $orderProduct = new OrderProduct();
                 $orderProduct->order_id = $newOrder->id;
                 $orderProduct->product_id = $id;
                 $orderProduct->quantity = $request->quantity[$key];
+                $orderProduct->one_unit_price = $request->one_unit_price[$key];
                 $orderProduct->save();
 
             \Cart::session($session_id)->remove($request->product_id[$key]);

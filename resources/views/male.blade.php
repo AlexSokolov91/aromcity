@@ -51,7 +51,6 @@
                         </div>
                             <a href="#cart-popup" data-href="{{route('add_cart' , $product->id)}}" class="g-btn g-btn--product add-to-cart"><i class="product-cart-icon"></i> Купить со скидкой</a>
                             {{--<a href="{{route('add_cart' , $product->id)}}"  class="addProduct"></a>--}}
-
                             </form>
                     </div>
 
@@ -78,20 +77,13 @@
 
 
                 </ul>
-
                 <!-- pagination-ended -->
             </div>
         </div>
     </div>
 
-    <!-- categories-ended -->
-
-    <!-- footer-begins -->
-{{--@include('footer')--}}
 @section('scripts')
-    <script src="{{asset('js/addToCart.js')}}"></script>
     <script src="{{asset('js/script.js')}}"> </script>
-
 @endsection
 @endsection
 

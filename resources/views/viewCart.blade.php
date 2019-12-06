@@ -46,10 +46,11 @@
     @foreach($products as $product)
         {{--@dd($product)--}}
                 <input type="hidden" name="product_id[]"   value="{{$product->id}}">
+                <input type="hidden" name="one_unit_price" value="{{$product->price}}">
         <li class="cart__product">
     <div class="cart__product-links">
     <div class="cart__product-img">
-    <a href="javascript:void(0);"><img src="{{$product->attributes->images['path'], $product->id}}" alt=""></a>
+    <a href="javascript:void(0);"><img src="{{\Illuminate\Support\Facades\Storage::url($product->attributes->images['path'], $product->id)}}" alt=""></a>
     </div>
     <div class="cart__product-title">
     <a href="javascript:void(0);">{{$product->name, $product->id}}</a>
@@ -57,18 +58,20 @@
     </div>
             <div class="cart__product-price">{{$product->price, $product->id}} грн</div>
             <div class="responsive-devider"></div>
-    <select  data-price="{{$product->price}}" name='quantity[]' class="cart__product-amount" id="cart__product-amount">
-        @for($i =1; $i <= 9; $i++)
-            <option value="{{$i}}" selected>{{$i}} шт</option>
+    <select  data-price="{{$product->price}}" name='quantity[]' class="cart__product-amount" >
+        @for($i =1; $i <= 10; $i++)
+            <option value="{{$i}}" data-price="{{$product->price}}" id="select" selected>{{$i}} шт</option>
         {{--<input type="hidden" name="quantity" value="{{$i}}">--}}
         @endfor
     </select>
     <input type="hidden" name="total_price" value="{{$total}}">
-    <div class="cart__product-total"> грн</div>
-    <div class="cart__product-remove"></div>
+            <input type="hidden" name="one_unit_price" value="{{$product->price}}">
+    <div class="cart__product-total"  data-value="">{{\Cart::get($product->id)->getPriceSum()}} грн</div>
+            <a class="cart__product-remove" href="{{route('cart.remove',  $product->id)}}"> </a>
     </li>
-        </ul>
         @endforeach
+
+        </ul>
     <div class="cart__bottom">
         <div class="cart__bottom-form-wrapper">
         <div class="form-group">
@@ -79,7 +82,9 @@
     <label for="phone" >Телефон * <span>обязательное поле</span></label>
     <input id="phone" name="client_phone" type="text" class="g-input" placeholder="Номер телефона" required>
     </div>
-    <div class="cart__total">{{$total}} грн</div>
+
+    <div class="cart__total">@if(empty(\Cart::isEmpty())){{$total}} грн  @endif</div>
+
         <button type="submit" class="g-btn g-btn--checkout" value="Заказать">Заказать</button>
     </div>
         {{--</div>--}}
@@ -107,76 +112,55 @@
       </div>
      </div>
     </div>
-
-        {{--@section('scripts')--}}
-            {{--<script src="{{asset('js/jquery.min.js')}}"></script>--}}
-            {{--<script src="{{asset('js/script.js')}}"> </script>--}}
-    {{--<script src="{{asset('js/addToCart.js')}}"></script>--}}
-
-{{--@endsection--}}
-{{--@section('scripts')--}}
-    {{--<script>--}}
-        {{--$('.cart__product-amount.selected').on('change' ,function (e) {--}}
-            {{--var value = (e.currentTarget).attr('value');--}}
-            {{--console.log(value)--}}
-        {{--})--}}
-
-    {{--</script>--}}
-{{--@endsection--}}
-
-{{--<script src="js/jquery.min.js"></script>--}}
-{{--<script src="js/libs.min.js"></script>--}}
-{{--<script src="js/scripts.js"></script>--}}
-
-{{--</body>--}}
-{{--</html>--}}
-<script>
-    // var count = '';
-     $('.cart__product-amount').on('change' ,function (e) {
-         e.preventDefault();
-    //
-    //
-     var count = $(this).find("option:selected").val();
-    // parseInt(count).text();
-    //
-        console.log(count);
-
-
-        var price = document.querySelectorAll('[data-price]');
-        $(price).click(function () {
-        //
-            console.log($(this).data('price'));
-            // parseInt(price).text();
-
-
-
-            // var result = price * count;
-            // console.log(result);
-
-    });
-    });
-    </script>
-    <script>
-        $("cart__product-amount").change(function () {
-            var option = $(this).val();
-            $("#form__checkout").attr("actions", "list/" + option);
-        });
-    </script>
-
-    <script>
-        $('.cart__product-remove').on('click' , function (e) {
-            e.preventDefault();
-            var href = $(e.currentTarget).attr('href');
-            // console.log(href);
-            var deleted = $.get(href , function (response) {
-                // console.log(deleted);
-
-                var result = $.get('/cart/show', function (result) {
-                    // console.log(result);
-                    $('.cart__product-list').html(result);
-
-                })
-            });
-        });
-    </script>
+    <script src="{{asset('js/jquery.min.js')}}"></script>
+    <script src="{{asset('js/calc.js')}}"></script>
+    <script src="{{asset('js/removeToCart.js')}}"></script>
 @endsection
+{
+
+
+{{--<script>--}}
+    {{--var count = '';--}}
+     {{--$('#cart__product-amount').on('change' , function (e) {--}}
+         {{--e.preventDefault();--}}
+     {{--var count = $(this).find("option:selected").val();--}}
+         {{--console.log(count);--}}
+         {{--var price = $('#cart__product-amount').attr('data-price');--}}
+         {{--var number = $('#cart__product-amount option').val();--}}
+         {{--var price = document.querySelectorAll('[data-price]');--}}
+        {{--$(price).click(function () {--}}
+            {{--//--}}
+            {{--console.log($(this).data('price'));--}}
+            {{--// parseInt(price).text();--}}
+
+
+            {{--// var result = price * count;--}}
+            {{--// console.log(result);--}}
+
+    {{--});--}}
+    {{--});--}}
+    {{--</script>--}}
+    {{--<script>--}}
+        {{--$("cart__product-amount").change(function () {--}}
+            {{--var option = $(this).val();--}}
+            {{--console.log(option);--}}
+            {{--$("#form__checkout").attr("actions", "list/" + option);--}}
+        {{--});--}}
+    {{--</script>--}}
+
+    {{--<script>--}}
+        {{--$('.cart__product-remove').on('click' , function (e) {--}}
+            {{--e.preventDefault();--}}
+            {{--var href = $(e.currentTarget).attr('href');--}}
+            {{--var deleted = $.get(href , function (response) {--}}
+                {{--// console.log(deleted);--}}
+
+                {{--var result1 = $.get('/cart/show', function (result) {--}}
+                    {{--// console.log(result);--}}
+                    {{--$('.cart__product-list').html(result);--}}
+
+                {{--})--}}
+            {{--});--}}
+        {{--});--}}
+    {{--</script>--}}
+

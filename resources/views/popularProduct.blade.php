@@ -13,7 +13,7 @@
                     <span class="product__discount-text">-50%</span>
                 </div>
                 <div class="product__img">
-                    <a href="product.html">
+                    <a href="{{route('product.show' , $product->id)}}">
                         <img src="{{\Illuminate\Support\Facades\Storage::url($product->images->path)}}" alt="" class="img-fluid">
                     </a>
                 </div>
@@ -29,12 +29,14 @@
                     <span class="old-price">{{$product->old_price}} грн</span>
                     <span class="new-price">{{$product->price}}грн</span>
                 </div>
-                <a href="{{ route('add_cart' , $product->id)}}" class="g-btn g-btn--product add-to-cart"><i class="product-cart-icon"></i>Купить со скидкой</a>
+                <a href="#cart-popup" data-href="{{route('add_cart' , $product->id)}}" class="g-btn g-btn--product add-to-cart"><i class="product-cart-icon"></i> Купить со скидкой</a>
+
             {{--</div>--}}
                 @endif
             </div>
     @endforeach
         </div>
+
     </div>
 
 {{--</section>--}}
